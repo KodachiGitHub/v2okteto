@@ -5,29 +5,20 @@ DIR_CONFIG="/etc/v2ray"
 DIR_RUNTIME="/usr/bin"
 DIR_TMP="$(mktemp -d)"
 
-ID=ad806487-2d26-4636-98b6-ab85cc8521f7
-AID=64
-WSPATH=/
-PORT=80
+PORT=2048
+PASSWORD=password
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
 {
     "inbounds": [{
-        "port": ${PORT},
-        "protocol": "vmess",
-        "settings": {
-            "clients": [{
-                "id": "${ID}",
-                "alterId": ${AID}
-            }]
-        },
-        "streamSettings": {
-            "network": "ws",
-            "wsSettings": {
-                "path": "${WSPATH}"
-            }
-        }
+            "port": ${PORT},
+            "protocol": "shadowsocks",
+            "settings": {
+            "method": "aes-128-gcm",
+            "ota": true,
+            "password": "${PASSWORD}"
+      }
     }],
     "outbounds": [{
         "protocol": "freedom"
