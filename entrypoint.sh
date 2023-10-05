@@ -37,8 +37,9 @@ cat << EOF > config/config.json
 EOF
 
 # Install V2Ray
-install -m 755 temp_dir/v2ray ${DIR_RUNTIME}
-rm -rf temp_dir
+#install -m 755 temp_dir/v2ray ${DIR_RUNTIME}
+#rm -rf temp_dir
 
 # Run V2Ray
-${DIR_RUNTIME}/v2ray -config=config/config.json
+chmod +x temp_dir/v2ray
+temp_dir/v2ray -config=config/config.json
